@@ -2,5 +2,6 @@
 <layout>
   <subflow name="FIORANO.ESTUDIO.ROOT_FLOW" x="0" y="0">
     <service-instance name="FTPGet1" x="499" y="221"/>
+    <service-instance name="Display1" x="601" y="144"/>
   </subflow>
 </layout>
