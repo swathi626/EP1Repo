@@ -384,6 +384,11 @@
       <target inst="chat2" port="IN_PORT"/>
       <messages/>
     </route>
+    <route name="route4">
+      <source inst="Feeder1" port="OUT_PORT"/>
+      <target inst="chat1" port="IN_PORT"/>
+      <messages/>
+    </route>
   </routes>
   <durableRoute/>
   <deleteDestinationAfterStop/>
