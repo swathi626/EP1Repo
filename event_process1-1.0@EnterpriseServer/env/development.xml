@@ -47,4 +47,9 @@
       <target:deployment cache="true" nodes="fps"/>
     </target:instance-properties>
   </target:instance>
+  <target:instance name="chat3">
+    <target:instance-properties>
+      <target:deployment cache="true" nodes="fps"/>
+    </target:instance-properties>
+  </target:instance>
 </target:target>
