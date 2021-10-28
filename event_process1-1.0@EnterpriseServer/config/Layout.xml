@@ -4,5 +4,6 @@
     <service-instance name="POP31" x="503" y="180"/>
     <service-instance name="Feeder1" x="253" y="229"/>
     <service-instance name="Display1" x="623" y="114"/>
+    <service-instance name="chat1" x="347" y="116"/>
   </subflow>
 </layout>
