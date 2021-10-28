@@ -27,4 +27,9 @@
       <target:property encrypt="false" name="Protocol" type="java.lang.String">POP3</target:property>
     </target:configuration-properties>
   </target:instance>
+  <target:instance name="Feeder1">
+    <target:instance-properties>
+      <target:deployment cache="true" nodes="fps"/>
+    </target:instance-properties>
+  </target:instance>
 </target:target>
