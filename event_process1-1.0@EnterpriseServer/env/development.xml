@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <target:target xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:target="http://fiorano.com/environment/1.0" xsi:schemaLocation="http://fiorano.com/environment/1.0 env.xsd">
-  <target:instance name="Feeder1">
+  <target:instance name="POP31">
     <target:instance-properties>
       <target:deployment cache="true" nodes="fps"/>
     </target:instance-properties>
+    <target:configuration-properties>
+      <target:property encrypt="false" name="AuthenticationConfiguration" type="NamedObject">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>
+&lt;ns1:namedConfiguration ns1:CLASS_NAME=&quot;com.fiorano.services.common.security.AuthenticationConfiguration&quot; xmlns:ns1=&quot;uri:com.fiorano.services.common.security&quot;>
+    &lt;ns1:passwordFromVault>false&lt;/ns1:passwordFromVault>
+    &lt;ns1:customPasswordEncryption>false&lt;/ns1:customPasswordEncryption>
+    &lt;ns1:authenticationRequired>true&lt;/ns1:authenticationRequired>
+    &lt;ns1:username>ayrton&lt;/ns1:username>
+    &lt;ns1:password>zcC6SXzF+bh4BGN4YJKKfw==&lt;/ns1:password>
+&lt;/ns1:namedConfiguration>
+</target:property>
+      <target:property encrypt="false" name="Connection Timeout" type="java.lang.Integer">-1</target:property>
+      <target:property encrypt="false" name="Operation Name" type="java.lang.String">recvMail</target:property>
+      <target:property encrypt="false" name="Timeout" type="java.lang.Integer">-1</target:property>
+      <target:property encrypt="false" name="POP3ConnectionConfiguration" type="NamedObject">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?>
+&lt;ns1:namedConfiguration ns1:CLASS_NAME=&quot;com.fiorano.adapter.jca.pop3.spi.outbound.POP3ConnectionConfiguration&quot; xmlns:ns2=&quot;uri:com.fiorano.services.common.jaxb.adapter&quot; xmlns:ns1=&quot;uri:com.fiorano.adapter.jca.pop3.spi.outbound&quot;>
+    &lt;ns1:mailServerName>mailserver.fiorano.com&lt;/ns1:mailServerName>
+    &lt;ns1:mailServerPort>110&lt;/ns1:mailServerPort>
+    &lt;ns1:connectionProperties/>
+&lt;/ns1:namedConfiguration>
+</target:property>
+      <target:property encrypt="false" name="Protocol" type="java.lang.String">POP3</target:property>
+    </target:configuration-properties>
   </target:instance>
 </target:target>

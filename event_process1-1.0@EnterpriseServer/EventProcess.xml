@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application guid="EVENT_PROCESS1" version="1.0">
   <display categories="User Processes" name="Event Process1"/>
-  <creation authors="eStudio" date="27-10-2021 05:50:30" lastModifiedDate="27-10-2021 05:50:30"/>
+  <creation authors="eStudio" date="27-10-2021 05:23:58" lastModifiedDate="27-10-2021 05:23:58"/>
   <deployment label="Development"/>
   <service-instances>
-    <inst name="Feeder1">
-      <service guid="Feeder" version="4.0"/>
-      <short-description>The Feeder service is used to feed in data.</short-description>
-      <long-description>The Feeder service is used to feed data to any service to which its output port is linked. The service defines no input or output format for the messages. It can take any data as input and just sends it forward. The user can input data in the window which pops up on launching the service.</long-description>
+    <inst name="POP31">
+      <service guid="POP3" version="4.0"/>
+      <short-description>Retrieves mails from server</short-description>
+      <long-description>Retrieves mails from server</long-description>
+      <config-file name="POP31.xml" partiallyConfigured="false"/>
+      <resource-properties>
+        <resource-property name="Username">ayrton</resource-property>
+        <resource-property name="Server Port">110</resource-property>
+        <resource-property name="Mail Server URL">mailserver.fiorano.com</resource-property>
+        <resource-property name="Is Authentication required">true</resource-property>
+        <resource-property name="Operation Name">recvMail</resource-property>
+      </resource-properties>
+      <schema-references/>
       <deployment nodes="fps"/>
       <execution>
         <debug enabled="false" port="5000"/>
@@ -15,9 +24,28 @@
         <connection-factory-properties/>
         <timevalue timevalue="0"/>
       </execution>
+      <inputport-instances>
+        <inputport-instance name="IN_PORT">
+          <description>Takes input Message Count</description>
+          <schema root="{http://www.fiorano.com/fesb/activity/POP31/In}Input">
+            <file>IN_PORT.xsd</file>
+          </schema>
+          <jms enabled="true">
+            <destination/>
+            <authentication/>
+            <subscriber>
+              <transaction enabled="false"/>
+              <subscription durable="false"/>
+            </subscriber>
+          </jms>
+        </inputport-instance>
+      </inputport-instances>
       <outputport-instances>
         <outputport-instance name="OUT_PORT">
-          <description>Gives data or messages as output</description>
+          <description>Sends messages popped from the incoming POP3 server</description>
+          <schema root="{http://www.fiorano.com/fesb/activity/POP31/Out}Emails">
+            <file>OUT_PORT.xsd</file>
+          </schema>
           <jms>
             <destination/>
             <authentication/>
@@ -49,11 +77,14 @@
         <Param name="fiorano.jms.log2.def.DefaultFormatter.dateformat">MM/dd/yyyy HH:mm:ss</Param>
       </logmanager>
       <logmodules>
-        <logmodule level="WARNING" name="com.fiorano.services.feeder.FeederService" uniqueNameRequired="true"/>
-        <logmodule level="WARNING" name="com.fiorano.services.feeder.transport.jms" uniqueNameRequired="true"/>
-        <logmodule level="WARNING" name="com.fiorano.services.feeder.engine" uniqueNameRequired="true"/>
-        <logmodule level="SEVERE" name="ERR_HANDLER" uniqueNameRequired="true"/>
+        <logmodule level="OFF" name="com.fiorano.services.customencryption" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="com.fiorano.adapter.jca.pop3.cci.POP3Interaction" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="com.fiorano.adapter.jca.pop3.spi.outbound.POP3ManagedConnectionFactory" uniqueNameRequired="true"/>
         <logmodule level="INFO" name="OUT_HANDLER" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="fiorano.esb.adapter.jca.dii.pop3.monitor" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="ERR_HANDLER" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="com.fiorano.bc.trgateway" uniqueNameRequired="true"/>
+        <logmodule level="SEVERE" name="LOGGER_NAME" uniqueNameRequired="true"/>
       </logmodules>
       <runtime-arguments>
         <runtime-argument inmemory="false" mandatory="false" name="JVM_PARAMS" type="java.lang.String">

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.fiorano.com/fesb/activity/POP31/In" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="Input">
+        <xsd:complexType>
+            <xsd:sequence>
+			<xsd:element name="MessageCount" type="xsd:int" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
